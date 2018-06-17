@@ -7,6 +7,9 @@ app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 target = os.path.join(APP_ROOT, 'static/images/')
+if not os.path.exists(target):
+    os.mkdir(target)
+
 
 @app.route('/')
 def home():
