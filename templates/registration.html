@@ -20,8 +20,73 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/dropdown/css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/theme/css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='assets/mobirise/css/mbr-additional.css') }}" type="text/css">
-  
-  
+  <style>
+  .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+  }
+
+  .dropdown {
+      position: relative;
+      display: inline-block;
+  }
+
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
+
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+
+  .dropdown-content a:hover {background-color: #ddd;}
+
+  .dropdown:hover .dropdown-content {display: block;}
+
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+  <script>
+  function checkpass()                                   
+  {
+      var pass1 = document.forms["RegForm"]["field5"];              
+      var pass2 = document.forms["RegForm"]["field4"];   
+    
+      if (pass1.value != pass2.value)                                 
+      {
+          window.alert("Passwords do not match");
+          pass1.focus();
+          return false;
+      }
+      return true;
+  }
+  function addnot()                                   
+  {
+      var reg = document.forms["RegForm"]["registration"];              
+      var not = document.forms["RegForm"]["field9"];              
+    
+      if (reg.value != "Self")                                 
+      {
+        if (not.value < 2 ) 
+        {
+          window.alert("Enter Number of Tickets Correctly");
+          not.focus();
+          return false;
+        }
+      }
+      return true;
+  }
+</script>
 </head>
 <body>
 <section id="menu-6">
@@ -81,16 +146,22 @@
                     <h2 style="color: white">REGISTRATION FORM</h2>
                     <p class="mbr-section-lead lead">
                      
-                    <form action = "registform" id="reg" method = post enctype = "multipart/form-data">
-<p align="left"><font style="color: white"><b>Name:</b></font><br><input id =field1 name="field1" type = "text" ng-model="a" placeholder = "Full Name" size="65"></p>
-<p align="left"><font style="color: white"><b>Email ID:</b> </font><br><input id =field2 name="field2" type = "text" ng-model="b" placeholder = "Email ID here" size="65"></p>
-<p align="left"><font style="color: white"><b>User ID:</b> </font><br><input id =field3 name="field3" type = "text" ng-model="c" placeholder = "User ID" size="65"></p>
-<p align="left"><font style="color: white"><b>Password:</b> </font><br><input id =field4 name="field4" type = "password" ng-model="d" placeholder = "Password " size="65"></p>
-<p align="left"><font style="color: white"><b>Confirm Password:</b>  </font><br><input id =field5 name="field5" type = "password" ng-model="e" placeholder = "Re-type password" size="65"></p>
-<p align="left"><font style="color: white"><b>Mobile:</b>  </font><br><input id =field6 name="field6" type = "text"  ng-model="f" placeholder = "Phone Number" size="65"></p>
-<p align="left"><font style="color: white"><b>Upload ID:</b>  </font><br><input id="field7" type="file" name="file" ng-model="g" accept="image/*" multiple></p>
-<p align="left"><font style="color: white"><b>Registration type:</b>  </font><br><input id =field8 name="field8" ng-model="h" type = "password"  placeholder = "Registration type" size="65"></p>
-<p align="left"><font style="color: white"><b>No of Tickets:</b>  </font><br><input id =field9 name="field9" ng-model="i" type = "number"  placeholder = "Number of tickets" size="65" value=1></p>
+                    <form name="RegForm" action = "registform" id="reg" method = post enctype = "multipart/form-data">
+<p align="left"><font style="color: white"><b>Name:</b></font><br><input id =field1 name="field1" type = "text" ng-model="a" placeholder = "Full Name" size="65" required></p>
+<p align="left"><font style="color: white"><b>Email ID:</b> </font><br><input id =field2 name="field2" type = "email" ng-model="b" placeholder = "Email ID here" size="65" required></p>
+<p align="left"><font style="color: white"><b>User ID:</b> </font><br><input id =field3 name="field3" type = "test" ng-model="c" placeholder = "User ID" size="65" required></p>
+<p align="left"><font style="color: white"><b>Password:</b> </font><br><input id =field4 name="field4" type = "password" ng-model="d" placeholder = "Password " size="65" required></p>
+<p align="left"><font style="color: white"><b>Confirm Password:</b>  </font><br><input onkeyup="checkpass();" id =field5 name="field5" type = "password" ng-model="e" placeholder = "Re-type password" size="65" required></p>
+<p align="left"><font style="color: white"><b>Mobile:</b>  </font><br><input id =field6 name="field6" type = "text"  ng-model="f" placeholder = "Phone Number" size="65" required></p>
+<p align="left"><font style="color: white"><b>Upload ID:</b>  </font><br><input id="field7" type="file" name="file" ng-model="g" accept="image/*" multiple required></p>
+<p align="left"><font style="color: white"><b>Registration type:</b></font><br>
+     <select onchange="addnot();" name="registration" ng-model="h" required>
+      <option value="self">self</option>
+      <option value="Group">Group</option>
+      <option value="Corporate">Corporate</option>
+      <option value="Others">Others</option>
+    </select> </p>
+<p align="left"><font style="color: white"><b>No of Tickets:</b>  </font><br><input onchange="addnot();" id =field9 name="field9" ng-model="i" type = "number"  placeholder = "Number of tickets" size="65" value=1></p>
 <input class="mbr-section-btn" type="submit" />
 </p></form>
                     
