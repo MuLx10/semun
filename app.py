@@ -78,8 +78,28 @@ def register():
     if (data == 1) :
         flash('ERROR! PLEASE ENTER SOMETHING OR CHECK YOUR USER')
         return redirect(url_for('registration'))
-    print data
+
+    '''
+    USERID,NAME,EMAIL,PASSWORD,MOBILE,REG,NT,IMG
+    Name    : {{ data[1]}}<br/>
+    Email   : {{ data[2]}}<br/>
+    Mobile: {{ data[4]}}<br/>
+    Registration type: {{ data[5]}}<br/>
+    No of Tickets:{{ data[6]}}<br/></p>
+    '''
+    data = [request.form['field3'],
+            request.form['field1'],
+            request.form['field2'],
+            request.form['field4'],
+            request.form['field6'],
+            request.form['field8'],
+            request.form['field9'],
+            name]
+    data = map(str,data)
     flash('You were successfull')
+    return render_template(
+                'index.html',
+                 data = data)
     return redirect(url_for('registration'))
 
 
