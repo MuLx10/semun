@@ -73,16 +73,12 @@
   function addnot()                                   
   {
       var reg = document.forms["RegForm"]["registration"];              
-      var not = document.forms["RegForm"]["field9"];              
+
     
-      if (reg.value != "Self")                                 
+      if (reg.value == "Self")                                 
       {
-        if (not.value < 2 ) 
-        {
-          window.alert("Enter Number of Tickets Correctly");
-          not.focus();
-          return false;
-        }
+          document.getElementsByTagName("INPUT")["field9"].setAttribute("value", 1); 
+          return false;       
       }
       return true;
   }
@@ -156,12 +152,12 @@
 <p align="left"><font style="color: white"><b>Upload ID:</b>  </font><br><input id="field7" type="file" name="file" ng-model="g" accept="image/*" multiple required></p>
 <p align="left"><font style="color: white"><b>Registration type:</b></font><br>
      <select onchange="addnot();" name="registration" ng-model="h" required>
-      <option value="self">self</option>
+      <option value="Self">Self</option>
       <option value="Group">Group</option>
       <option value="Corporate">Corporate</option>
       <option value="Others">Others</option>
     </select> </p>
-<p align="left"><font style="color: white"><b>No of Tickets:</b>  </font><br><input onchange="addnot();" id =field9 name="field9" ng-model="i" type = "number"  placeholder = "Number of tickets" size="65" value=1></p>
+<p align="left"><font style="color: white"><b>No of Tickets:</b>  </font><br><input id =field9 name="field9" ng-model="i" type = "number"  placeholder = "Number of tickets" size="65" required></p>
 <input class="mbr-section-btn" type="submit" />
 </p></form>
                     
