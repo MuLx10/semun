@@ -2,15 +2,15 @@ import psycopg2 as pg
 
 
 def get_connection():
-    conn = pg.connect(database = "testdb", 
-        user = "postgres", password = "test", 
-        host = "127.0.0.1", port = "5432")
-    # conn = pg.connect(
-    #     database='dkmkico',
-    #     user='dkmkico',
-    #     password='_d3TVkeZNgz2rumJW5KDbF_XzLb8cN',
-    #     host='horton.elephantsql.com',
-    #     port=5432)
+    # conn = pg.connect(database = "testdb", 
+    #     user = "postgres", password = "test", 
+    #     host = "127.0.0.1", port = "5432")
+    conn = pg.connect(
+        database='d1vg1p6775ts33',
+        user='kxriveycfvembv',
+        password='f6aac0667840144279ff257db494bd660830897ba735f504d4239d10a2619ae7',
+        host='ec2-54-83-58-222.compute-1.amazonaws.com',
+        port=5432)
     return conn
 
 
